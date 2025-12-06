@@ -1,0 +1,25 @@
+# Loại trừ file cấu hình local
+config.php
+
+# Loại trừ thư mục uploads (nếu có)
+uploads/
+images/uploaded/
+
+# Loại trừ file hệ thống
+.DS_Store
+Thumbs.db
+*.log
+
+# Loại trừ thư mục vendor (nếu dùng Composer)
+vendor/
+
+# Loại trừ file IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Loại trừ file backup
+*.bak
+*.tmp
+*~

@@ -1,0 +1,316 @@
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    background-color: #0a0a0a !important;
+    color: #e0e0e0;
+    overflow-x: hidden;
+}
+
+/* Navbar Styling */
+.navbar-inverse {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(0,0,0,0.85));
+    border: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+}
+
+.navbar-brand {
+    color: #e50914 !important;
+    font-weight: 700;
+    font-size: 26px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+.navbar-brand:hover {
+    color: #ff1f2a !important;
+    text-shadow: 0 0 20px rgba(229, 9, 20, 0.8);
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #ccc !important;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s;
+    padding: 15px 18px;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: #fff !important;
+    background-color: rgba(229, 9, 20, 0.2);
+}
+
+.navbar-inverse .navbar-nav > .active > a {
+    background-color: rgba(229, 9, 20, 0.3) !important;
+    color: #fff !important;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 75vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(10,10,10,0.9)), 
+                url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1920') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 60px;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(to top, #0a0a0a, transparent);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-content h1 {
+    font-size: 4.5rem;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 3px 3px 15px rgba(0,0,0,0.8);
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.hero-content p {
+    font-size: 1.4rem;
+    color: #ddd;
+    margin-bottom: 35px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+}
+
+.btn-booking {
+    display: inline-block;
+    padding: 16px 50px;
+    background: linear-gradient(135deg, #e50914 0%, #b20710 100%);
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 50px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.4s;
+    box-shadow: 0 8px 25px rgba(229, 9, 20, 0.4);
+}
+
+.btn-booking:hover {
+    background: linear-gradient(135deg, #ff1f2a 0%, #e50914 100%);
+    color: white;
+    text-decoration: none;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(229, 9, 20, 0.6);
+}
+
+/* Section Title */
+.section-title {
+    color: #fff;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #e50914, transparent);
+}
+
+/* Movie Card */
+.movie-card {
+    background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 35px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+.movie-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 15px 45px rgba(229, 9, 20, 0.4);
+}
+
+.movie-img-wrap {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+}
+
+.movie-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.movie-card:hover .movie-img-wrap img {
+    transform: scale(1.1);
+}
+
+.movie-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.movie-card:hover .movie-overlay {
+    opacity: 1;
+}
+
+.btn-get-ticket {
+    padding: 12px 35px;
+    background: linear-gradient(135deg, #e50914, #b20710);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transform: translateY(20px);
+    transition: all 0.4s;
+    box-shadow: 0 8px 20px rgba(229, 9, 20, 0.5);
+}
+
+.movie-card:hover .btn-get-ticket {
+    transform: translateY(0);
+}
+
+.btn-get-ticket:hover {
+    background: linear-gradient(135deg, #ff1f2a, #e50914);
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(229, 9, 20, 0.7);
+}
+
+.movie-info {
+    padding: 20px;
+}
+
+.movie-info h4 {
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.movie-info p {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin: 8px 0;
+}
+
+.movie-info i {
+    margin-right: 8px;
+    color: #e50914;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(to top, #000, #0a0a0a);
+    padding: 30px 0;
+    margin-top: 80px;
+    border-top: 1px solid #222;
+}
+
+footer p {
+    color: #777;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Container */
+.main-container {
+    padding: 0;
+}
+
+.container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .movie-img-wrap {
+        height: 350px;
+    }
+}
+
+/* Loading Animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(229, 9, 20, 0.3);
+    border-radius: 50%;
+    border-top-color: #e50914;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
