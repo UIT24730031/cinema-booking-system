@@ -124,10 +124,3 @@ cinema/
 * Sơ đồ ghế tương tác theo thời gian thực
 * Dashboard quản trị với biểu đồ doanh thu
 
----
-
-## Liên hệ & đóng góp
-
-Repository: [https://github.com/your-username/cinema-booking](https://github.com/your-username/cinema-booking)
-
-Nếu bạn thấy dự án hữu ích, hãy đánh sao để ủng hộ.
