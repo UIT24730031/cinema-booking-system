@@ -1,6 +1,5 @@
 <?php
 // Cấu hình kết nối database
-// Copy file này thành config.php và điền thông tin của bạn
 
 $host = "localhost";
 $user = "root";
