@@ -1,5 +1,5 @@
-# Loại trừ file cấu hình local
-config.php
+# Loại trừ file cấu hình local (KHÔNG loại trừ config.php nữa vì đã config cho Railway)
+# config.php
 
 # Loại trừ thư mục uploads (nếu có)
 uploads/
