@@ -83,4 +83,3 @@ if($result === false) {
 } else {
     echo "<script>alert('Hủy vé thành công!'); window.location='booking_history.php';</script>";
 }
-?>

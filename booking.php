@@ -202,10 +202,16 @@ function updateBookingInfo() {
 // Check seat availability before submitting
 function checkSeatAvailability() {
     return fetch('check_seat_availability.php?screening_id=<?php echo $screening_id;?>')
-        .then(response => response.json())
+        .then(response => {
+            if(!response.ok) {
+                throw new Error('HTTP error! status: ' + response.status);
+            }
+            return response.json();
+        })
         .then(data => {
+            console.log('Seat availability response:', data);
             if(!data.success) {
-                throw new Error('Không thể kiểm tra tình trạng ghế');
+                throw new Error(data.message || 'Không thể kiểm tra tình trạng ghế');
             }
             
             // Check if any selected seats are now booked
@@ -218,6 +224,10 @@ function checkSeatAvailability() {
             }
             
             return { available: true };
+        })
+        .catch(error => {
+            console.error('Seat availability check error:', error);
+            throw error;
         });
 }
 

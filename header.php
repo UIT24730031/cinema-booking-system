@@ -3,8 +3,7 @@ if(session_status() == PHP_SESSION_NONE){
     session_start();
 }
 include('config.php');
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8">
