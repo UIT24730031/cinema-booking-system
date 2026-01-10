@@ -1,0 +1,101 @@
+# ============================================
+# .htaccess cho Cinema Booking System
+# Bảo mật và tối ưu hóa cho InfinityFree
+# ============================================
+
+# Bật RewriteEngine
+RewriteEngine On
+
+# ============================================
+# BẢO MẬT FILE NHẠY CẢM
+# ============================================
+
+# Bảo vệ file config.php
+<Files "config.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Bảo vệ file database.sql
+<Files "database.sql">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Bảo vệ file .htaccess
+<Files ".htaccess">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Bảo vệ file .gitignore
+<Files ".gitignore">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# ============================================
+# NGĂN CHẶN DIRECTORY LISTING
+# ============================================
+Options -Indexes
+
+# ============================================
+# BẢO MẬT CHỐNG XSS VÀ CLICKJACKING
+# ============================================
+<IfModule mod_headers.c>
+    # Chống XSS
+    Header set X-XSS-Protection "1; mode=block"
+    
+    # Chống Clickjacking
+    Header set X-Frame-Options "SAMEORIGIN"
+    
+    # Chống Content Type Sniffing
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# ============================================
+# COMPRESSION (Tăng tốc độ tải trang)
+# ============================================
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript
+</IfModule>
+
+# ============================================
+# CACHE BROWSER (Tăng hiệu năng)
+# ============================================
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    
+    # CSS and JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    
+    # Fonts
+    ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# ============================================
+# REDIRECT HTTP -> HTTPS (Bật sau khi enable SSL)
+# ============================================
+# Uncomment 2 dòng dưới sau khi cài SSL trên InfinityFree:
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ============================================
+# ERROR PAGES (Optional)
+# ============================================
+# ErrorDocument 404 /404.php
+# ErrorDocument 403 /403.php
+# ErrorDocument 500 /500.php
+
+# ============================================
+# CHARSET UTF-8
+# ============================================
+AddDefaultCharset UTF-8
