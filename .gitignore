@@ -1,25 +1,53 @@
-# Loại trừ file cấu hình local
+# ============================================
+# .gitignore cho Cinema Booking System
+# ============================================
+
+# File cấu hình database
 config.php
 
-# Loại trừ thư mục uploads (nếu có)
+# File thông tin cá nhân
+INFINITYFREE_INFO.txt
+DEPLOY_GUIDE.md
+
+# Thư mục uploads (nếu có)
 uploads/
+temp/
 images/uploaded/
 
-# Loại trừ file hệ thống
-.DS_Store
-Thumbs.db
+# Cache files
+*.cache
+
+# Log files
 *.log
+error_log
 
-# Loại trừ thư mục vendor (nếu dùng Composer)
-vendor/
-
-# Loại trừ file IDE
+# IDE files
 .vscode/
 .idea/
 *.sublime-project
 *.sublime-workspace
 
-# Loại trừ file backup
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Backup files
 *.bak
-*.tmp
+*.backup
+*.old
 *~
+
+# Environment files
+.env
+.env.local
+
+# Composer (nếu dùng)
+/vendor/
+
+# Node modules (nếu dùng)
+node_modules/
+
+# Temporary files
+tmp/
+*.tmp
