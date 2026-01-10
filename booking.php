@@ -199,6 +199,28 @@ function updateBookingInfo() {
     document.getElementById('btn-confirm').disabled = count === 0;
 }
 
+// Check seat availability before submitting
+function checkSeatAvailability() {
+    return fetch('check_seat_availability.php?screening_id=<?php echo $screening_id;?>')
+        .then(response => response.json())
+        .then(data => {
+            if(!data.success) {
+                throw new Error('Không thể kiểm tra tình trạng ghế');
+            }
+            
+            // Check if any selected seats are now booked
+            const takenSeats = selectedSeats.filter(seat => data.booked_seats.includes(seat));
+            if(takenSeats.length > 0) {
+                return {
+                    available: false,
+                    takenSeats: takenSeats
+                };
+            }
+            
+            return { available: true };
+        });
+}
+
 document.getElementById('btn-confirm').addEventListener('click', function() {
     if(selectedSeats.length === 0) {
         alert('Vui lòng chọn ít nhất 1 ghế!');
@@ -206,26 +228,85 @@ document.getElementById('btn-confirm').addEventListener('click', function() {
     }
     
     if(confirm('Xác nhận đặt ' + selectedSeats.length + ' ghế: ' + selectedSeats.join(', ') + '?')) {
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = 'process_booking.php';
+        // Disable button to prevent double-click
+        this.disabled = true;
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang xử lý...';
         
-        const fields = {
-            'screening_id': '<?php echo $screening_id;?>',
-            'seats': selectedSeats.join(','),
-            'total_amount': selectedSeats.length * seatPrice
-        };
-        
-        for(let key in fields) {
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = key;
-            input.value = fields[key];
-            form.appendChild(input);
-        }
-        
-        document.body.appendChild(form);
-        form.submit();
+        // Check seat availability before submitting
+        checkSeatAvailability()
+            .then(result => {
+                if(!result.available) {
+                    alert('Ghế ' + result.takenSeats.join(', ') + ' đã được đặt bởi người dùng khác! Vui lòng chọn ghế khác.');
+                    // Remove taken seats from selection
+                    result.takenSeats.forEach(seat => {
+                        const seatElement = document.querySelector(`[data-seat="${seat}"]`);
+                        if(seatElement) {
+                            seatElement.classList.remove('selected');
+                            seatElement.classList.add('booked');
+                            seatElement.style.cursor = 'not-allowed';
+                        }
+                        selectedSeats = selectedSeats.filter(s => s !== seat);
+                    });
+                    updateBookingInfo();
+                    this.disabled = false;
+                    this.innerHTML = '<i class="fas fa-ticket-alt"></i> XÁC NHẬN ĐẶT VÉ';
+                    return;
+                }
+                
+                // Submit booking via AJAX
+                const formData = new FormData();
+                formData.append('screening_id', '<?php echo $screening_id;?>');
+                formData.append('seats', selectedSeats.join(','));
+                formData.append('total_amount', selectedSeats.length * seatPrice);
+                
+                fetch('process_booking.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if(data.success) {
+                        alert('Đặt vé thành công! Mã đặt vé: #' + data.data.booking_id);
+                        window.location = 'booking_history.php';
+                    } else {
+                        if(data.error_code === 'seats_taken' || data.error_code === 'seat_taken') {
+                            alert(data.message);
+                            // Mark taken seats as booked
+                            if(data.data && data.data.taken_seats) {
+                                data.data.taken_seats.forEach(seat => {
+                                    const seatElement = document.querySelector(`[data-seat="${seat}"]`);
+                                    if(seatElement) {
+                                        seatElement.classList.remove('selected');
+                                        seatElement.classList.add('booked');
+                                        seatElement.style.cursor = 'not-allowed';
+                                    }
+                                    selectedSeats = selectedSeats.filter(s => s !== seat);
+                                });
+                                updateBookingInfo();
+                            }
+                        } else if(data.error_code === 'not_authenticated') {
+                            alert(data.message);
+                            window.location = 'login.php';
+                        } else {
+                            alert(data.message);
+                        }
+                        this.disabled = false;
+                        this.innerHTML = '<i class="fas fa-ticket-alt"></i> XÁC NHẬN ĐẶT VÉ';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Đã xảy ra lỗi! Vui lòng thử lại.');
+                    this.disabled = false;
+                    this.innerHTML = '<i class="fas fa-ticket-alt"></i> XÁC NHẬN ĐẶT VÉ';
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Không thể kiểm tra tình trạng ghế! Vui lòng thử lại.');
+                this.disabled = false;
+                this.innerHTML = '<i class="fas fa-ticket-alt"></i> XÁC NHẬN ĐẶT VÉ';
+            });
     }
 });
 </script>
