@@ -9,7 +9,7 @@ config.php
 INFINITYFREE_INFO.txt
 DEPLOY_GUIDE.md
 
-# Thư mục uploads (nếu có)
+# Thư mục uploads 
 uploads/
 temp/
 images/uploaded/
@@ -42,10 +42,10 @@ desktop.ini
 .env
 .env.local
 
-# Composer (nếu dùng)
+# Composer 
 /vendor/
 
-# Node modules (nếu dùng)
+# Node modules 
 node_modules/
 
 # Temporary files
