@@ -12,15 +12,15 @@ if(!isset($_GET['screening_id'])) {
 
 $screening_id = intval($_GET['screening_id']);
 
-// Check if table exists (for debugging)
+// Check if table exists (for graceful degradation)
 $table_check = mysqli_query($con, "SHOW TABLES LIKE 'tbl_seat_bookings'");
 if(mysqli_num_rows($table_check) == 0) {
-    // Table doesn't exist yet, return empty booked seats
+    // Table doesn't exist, return empty booked seats
     echo json_encode([
         'success' => true,
         'booked_seats' => [],
         'available_seats' => 100,
-        'note' => 'Migration not run yet'
+        'note' => 'Database table not found'
     ]);
     exit;
 }

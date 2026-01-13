@@ -38,7 +38,8 @@ CREATE TABLE IF NOT EXISTS `tbl_bookings` (
   `status` enum('pending','confirmed','cancelled') DEFAULT 'confirmed',
   PRIMARY KEY (`booking_id`),
   KEY `user_id` (`user_id`),
-  KEY `screening_id` (`screening_id`)
+  KEY `screening_id` (`screening_id`),
+  KEY `idx_screening_status` (`screening_id`, `status`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -47,6 +48,33 @@ CREATE TABLE IF NOT EXISTS `tbl_bookings` (
 
 INSERT INTO `tbl_bookings` (`booking_id`, `user_id`, `screening_id`, `seats`, `total_amount`, `booking_date`, `status`) VALUES
 (1, 2, 9, 'G5,F5', 200000.00, '2025-12-05 08:19:38', 'confirmed');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_seat_bookings`
+--
+
+DROP TABLE IF EXISTS `tbl_seat_bookings`;
+CREATE TABLE IF NOT EXISTS `tbl_seat_bookings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `booking_id` int(11) NOT NULL,
+  `screening_id` int(11) NOT NULL,
+  `seat_number` varchar(10) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_seat_per_screening` (`screening_id`, `seat_number`),
+  KEY `booking_id` (`booking_id`),
+  KEY `screening_id` (`screening_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Bảng lưu từng ghế đã đặt - ngăn chặn duplicate booking';
+
+--
+-- Dumping data for table `tbl_seat_bookings`
+--
+
+INSERT INTO `tbl_seat_bookings` (`id`, `booking_id`, `screening_id`, `seat_number`, `created_at`) VALUES
+(1, 1, 9, 'G5', '2025-12-05 08:19:38'),
+(2, 1, 9, 'F5', '2025-12-05 08:19:38');
 
 -- --------------------------------------------------------
 
@@ -241,6 +269,13 @@ INSERT INTO `tbl_theatre` (`id`, `name`, `address`, `city`, `phone`, `total_scre
 ALTER TABLE `tbl_bookings`
   ADD CONSTRAINT `tbl_bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_registration` (`user_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `tbl_bookings_ibfk_2` FOREIGN KEY (`screening_id`) REFERENCES `tbl_screenings` (`screening_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `tbl_seat_bookings`
+--
+ALTER TABLE `tbl_seat_bookings`
+  ADD CONSTRAINT `tbl_seat_bookings_ibfk_1` FOREIGN KEY (`booking_id`) REFERENCES `tbl_bookings` (`booking_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `tbl_seat_bookings_ibfk_2` FOREIGN KEY (`screening_id`) REFERENCES `tbl_screenings` (`screening_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `tbl_login`

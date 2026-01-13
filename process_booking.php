@@ -1,6 +1,16 @@
 <?php
+// Start output buffering to prevent any output before JSON
+ob_start();
+
 session_start();
 include('config.php');
+
+// Clear any accidental output
+ob_end_clean();
+
+// Set error handling to prevent HTML output
+ini_set('display_errors', 0);
+error_reporting(E_ALL);
 
 // Return JSON response helper function
 function json_response($success, $message, $data = null, $error_code = null) {

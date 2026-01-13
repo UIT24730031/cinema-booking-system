@@ -11,6 +11,8 @@ Hệ thống đặt vé xem phim trực tuyến được xây dựng bằng PHP 
 * Xem danh sách phim (đang chiếu / sắp chiếu)
 * Xem thông tin chi tiết phim và lịch chiếu
 * Đặt vé với sơ đồ ghế tương tác
+* **🔒 Bảo vệ concurrent booking** - Ngăn chặn nhiều người đặt cùng ghế
+* Kiểm tra tình trạng ghế real-time
 * Quản lý lịch sử đặt vé
 * Hủy vé trực tuyến
 * Cập nhật thông tin hồ sơ cá nhân
@@ -40,7 +42,8 @@ Hệ thống đặt vé xem phim trực tuyến được xây dựng bằng PHP 
 
 **Database:**
 
-* MySQL 5.7+
+* MySQL 5.7+ / MariaDB
+* InnoDB Engine (cho transactions & row-level locking)
 
 **Thư viện hỗ trợ:**
 
@@ -50,7 +53,45 @@ Hệ thống đặt vé xem phim trực tuyến được xây dựng bằng PHP 
 
 ---
 
-## Hướng dẫn cài đặt
+## 🚀 Quick Start (5 phút)
+
+### 1️⃣ Clone project
+```bash
+git clone <your-repo-url>
+cd cinema-booking-system
+```
+
+### 2️⃣ Import database
+- Mở phpMyAdmin: `http://localhost/phpmyadmin`
+- Tạo database: `cinema_booking`
+- Import file: **`database.sql`**
+- ✅ Xong! Database đã có đầy đủ tính năng concurrent booking
+
+### 3️⃣ Cấu hình
+Copy và sửa file config:
+```bash
+cp config.example.php config.php
+```
+
+Sửa trong `config.php`:
+```php
+$host = "localhost";
+$user = "root";
+$password = "";  // Mật khẩu MySQL của bạn
+$database = "cinema_booking";
+```
+
+### 4️⃣ Chạy
+- User: `http://localhost/cinema-booking-system/`
+- Admin: `http://localhost/cinema-booking-system/admin/`
+
+**Tài khoản admin:**
+- Email: `admin@cinema.com`
+- Password: `admin123`
+
+---
+
+## Hướng dẫn cài đặt chi tiết
 
 ### Yêu cầu hệ thống
 
@@ -119,8 +160,82 @@ cinema/
 
 ## Tính năng nổi bật
 
-* Giao diện dark mode hiện đại
-* Thiết kế responsive tương thích mobile
-* Sơ đồ ghế tương tác theo thời gian thực
-* Dashboard quản trị với biểu đồ doanh thu
+* 🎨 Giao diện dark mode hiện đại
+* 📱 Thiết kế responsive tương thích mobile
+* 💺 Sơ đồ ghế tương tác theo thời gian thực
+* 🔒 **Concurrent booking protection** - Race condition prevention
+* 📊 Dashboard quản trị với biểu đồ doanh thu
+* 🔐 Bảo mật SQL injection với prepared statements
+* ⚡ Transaction-based booking cho data integrity
+
+---
+
+## 🛡️ Concurrent Booking Protection
+
+Hệ thống sử dụng nhiều lớp bảo vệ để ngăn chặn race conditions:
+
+### 1. Database Level
+- **UNIQUE constraint** trên `(screening_id, seat_number)`
+- **Foreign keys với CASCADE delete**
+- **InnoDB engine** cho row-level locking
+
+### 2. Application Level
+- **Database transactions** với BEGIN/COMMIT/ROLLBACK
+- **SELECT...FOR UPDATE** locking trong transactions
+- **Prepared statements** ngăn SQL injection
+
+### 3. User Experience
+- **AJAX real-time seat checking** trước khi submit
+- **Visual feedback** cho ghế đã được đặt
+- **Error handling** rõ ràng
+---
+
+## ❓ FAQs
+
+### Q: File nào cần import?
+**A:** Chỉ cần `database.sql` - file này đã có đầy đủ tính năng!
+
+### Q: Database có những bảng gì?
+**A:** 
+- `tbl_bookings` - Thông tin đặt vé
+- **`tbl_seat_bookings`** - Lưu từng ghế (ngăn duplicate)
+- `tbl_screenings` - Lịch chiếu
+- `tbl_movie` - Phim
+- `tbl_theatre` - Rạp
+- `tbl_registration` - User info
+- `tbl_login` - Authentication
+
+---
+
+## 🔧 Troubleshooting
+
+### Lỗi: "Table tbl_seat_bookings doesn't exist"
+**Nguyên nhân:** Import file database.sql cũ
+
+**Fix:** 
+1. Drop database: `DROP DATABASE cinema_booking;`
+2. Tạo lại: `CREATE DATABASE cinema_booking;`
+3. Import lại `database.sql` (version mới nhất)
+
+### Lỗi: "Duplicate entry for key 'unique_seat_per_screening'"
+**Tốt!** Đây là lỗi MONG MUỐN khi có 2 người đặt cùng ghế.
+Nghĩa là concurrent booking protection đang hoạt động! ✅
+
+### Lỗi: Connection failed
+**Fix:**
+1. Check MySQL đã chạy chưa
+2. Check username/password trong `config.php`
+3. Check database name đúng chưa
+
+---
+
+## ✅ Setup Checklist
+
+- [ ] Clone project về máy
+- [ ] Tạo database `cinema_booking` trong phpMyAdmin
+- [ ] Import file `database.sql`
+- [ ] Copy và cấu hình `config.php`
+- [ ] Chạy website: `http://localhost/cinema-booking-system/`
+- [ ] Login với admin account
+- [ ] Test booking vé
 
