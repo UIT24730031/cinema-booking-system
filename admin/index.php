@@ -1,6 +1,10 @@
 <?php
+ob_start();
+
 session_start();
 include('../config.php');
+
+ob_end_clean();
 
 // Kiểm tra đăng nhập admin
 if(!isset($_SESSION['user'])) {

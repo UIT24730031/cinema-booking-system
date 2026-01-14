@@ -1,5 +1,9 @@
 <?php
+ob_start();
+
 include('config.php');
+
+ob_end_clean();
 
 $name = $_POST['name'];
 $age = $_POST['age'];

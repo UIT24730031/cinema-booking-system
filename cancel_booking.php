@@ -1,6 +1,12 @@
 <?php
+// Prevent any output issues
+ob_start();
+
 session_start();
 include('config.php');
+
+// Clear any accidental output
+ob_end_clean();
 
 if(!isset($_SESSION['user'])) {
     header('location: login.php');

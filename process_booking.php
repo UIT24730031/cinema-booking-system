@@ -14,6 +14,13 @@ error_reporting(E_ALL);
 
 // Return JSON response helper function
 function json_response($success, $message, $data = null, $error_code = null) {
+    global $con;
+    
+    // Close database connection before sending response
+    if(isset($con) && $con) {
+        mysqli_close($con);
+    }
+    
     header('Content-Type: application/json');
     echo json_encode([
         'success' => $success,

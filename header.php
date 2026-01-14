@@ -1,8 +1,18 @@
 <?php
+// Start output buffering to prevent "headers already sent" errors
+ob_start();
+
 if(session_status() == PHP_SESSION_NONE){
     session_start();
 }
 include('config.php');
+
+// Clear any accidental output from config
+ob_end_clean();
+
+// Suppress errors in production
+ini_set('display_errors', 0);
+error_reporting(0);
 ?><!DOCTYPE html>
 <html lang="vi">
 <head>

@@ -1,12 +1,23 @@
 <?php
+// Prevent any output before JSON
+ob_start();
+
 session_start();
 include('config.php');
 
+// Clear any accidental output
+ob_end_clean();
+
 header('Content-Type: application/json');
+
+// Suppress HTML errors
+ini_set('display_errors', 0);
+error_reporting(E_ALL);
 
 // Validate input
 if(!isset($_GET['screening_id'])) {
     echo json_encode(['success' => false, 'message' => 'Invalid request']);
+    mysqli_close($con);
     exit;
 }
 
@@ -22,6 +33,7 @@ if(mysqli_num_rows($table_check) == 0) {
         'available_seats' => 100,
         'note' => 'Database table not found'
     ]);
+    mysqli_close($con);
     exit;
 }
 
@@ -30,6 +42,7 @@ $stmt = mysqli_prepare($con, "SELECT seat_number FROM tbl_seat_bookings WHERE sc
 
 if(!$stmt) {
     echo json_encode(['success' => false, 'message' => 'Database error: ' . mysqli_error($con)]);
+    mysqli_close($con);
     exit;
 }
 
@@ -48,6 +61,7 @@ mysqli_stmt_close($stmt);
 $stmt = mysqli_prepare($con, "SELECT available_seats FROM tbl_screenings WHERE screening_id = ?");
 if(!$stmt) {
     echo json_encode(['success' => false, 'message' => 'Database error: ' . mysqli_error($con)]);
+    mysqli_close($con);
     exit;
 }
 
@@ -62,3 +76,6 @@ echo json_encode([
     'booked_seats' => $booked_seats,
     'available_seats' => $screening ? $screening['available_seats'] : 0
 ]);
+
+// Close connection to free resources
+mysqli_close($con);
