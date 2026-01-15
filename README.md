@@ -53,6 +53,17 @@ Hệ thống đặt vé xem phim trực tuyến được xây dựng bằng PHP 
 
 ---
 
+## 👶 New to GitHub & PHP? Read This First
+Nếu bạn là người mới, lưu ý các điểm sau:
+- Không thể chạy file `.php` bằng cách double-click
+- Bắt buộc phải dùng local web server **XAMPP hoặc MAMP**
+- Source code phải nằm trong thư mục `htdocs`
+- Cần import database trước khi mở website
+
+➡️ Hãy làm theo từng bước ở phần **🚀 Quick Start (5 phút)** bên dưới
+
+---
+
 ## 🚀 Quick Start (5 phút)
 
 ### 1️⃣ Clone project
