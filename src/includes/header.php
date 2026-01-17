@@ -45,10 +45,14 @@ error_reporting(0);
       <a class="navbar-brand" href="/index.php"><i class="fas fa-film"></i> CINEMA STAR</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
+      <?php
+      // Get current page name
+      $current_page = basename($_SERVER['PHP_SELF']);
+      ?>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/index.php">Trang Chủ</a></li>
-        <li><a href="/src/pages/movies_events.php">Phim Đang Chiếu</a></li>
-        <li><a href="/src/pages/schedule.php">Lịch Chiếu</a></li>
+        <li class="<?php echo ($current_page == 'index.php') ? 'active' : ''; ?>"><a href="/index.php">Trang Chủ</a></li>
+        <li class="<?php echo ($current_page == 'movies_events.php') ? 'active' : ''; ?>"><a href="/src/pages/movies_events.php">Phim Đang Chiếu</a></li>
+        <li class="<?php echo ($current_page == 'schedule.php') ? 'active' : ''; ?>"><a href="/src/pages/schedule.php">Lịch Chiếu</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <?php if(isset($_SESSION['user'])){ ?>
