@@ -3,7 +3,7 @@
 ob_start();
 
 session_start();
-include('config.php');
+include(__DIR__ . '/../../config.php');
 
 // Clear any accidental output
 ob_end_clean();

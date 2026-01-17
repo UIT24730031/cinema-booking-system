@@ -5,7 +5,7 @@ ob_start();
 if(session_status() == PHP_SESSION_NONE){
     session_start();
 }
-include('config.php');
+include(__DIR__ . '/../../config.php');
 
 // Clear any accidental output from config
 ob_end_clean();
@@ -28,7 +28,7 @@ error_reporting(0);
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="<?php echo dirname($_SERVER['PHP_SELF'], 2); ?>/css/style.css">
 </head>
 <body>
 
@@ -40,13 +40,13 @@ error_reporting(0);
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="index.php"><i class="fas fa-film"></i> CINEMA STAR</a>
+      <a class="navbar-brand" href="/index.php"><i class="fas fa-film"></i> CINEMA STAR</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="index.php">Trang Chủ</a></li>
-        <li><a href="movies_events.php">Phim Đang Chiếu</a></li>
-        <li><a href="schedule.php">Lịch Chiếu</a></li>
+        <li class="active"><a href="/index.php">Trang Chủ</a></li>
+        <li><a href="/src/pages/movies_events.php">Phim Đang Chiếu</a></li>
+        <li><a href="/src/pages/schedule.php">Lịch Chiếu</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <?php if(isset($_SESSION['user'])){ ?>
@@ -55,13 +55,13 @@ error_reporting(0);
                     <i class="fas fa-user-circle"></i> <?php echo $_SESSION['user_name']; ?> <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="profile.php">Hồ sơ cá nhân</a></li>
-                    <li><a href="logout.php">Đăng xuất</a></li>
+                    <li><a href="/src/pages/profile.php">Hồ sơ cá nhân</a></li>
+                    <li><a href="/src/pages/logout.php">Đăng xuất</a></li>
                 </ul>
             </li>
         <?php } else { ?>
-            <li><a href="registration.php"><span class="glyphicon glyphicon-user"></span> Đăng Ký</a></li>
-            <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Đăng Nhập</a></li>
+            <li><a href="/src/pages/registration.php"><span class="glyphicon glyphicon-user"></span> Đăng Ký</a></li>
+            <li><a href="/src/pages/login.php"><span class="glyphicon glyphicon-log-in"></span> Đăng Nhập</a></li>
         <?php } ?>
       </ul>
     </div>

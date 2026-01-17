@@ -1,4 +1,4 @@
-<?php include('header.php'); ?>
+<?php include(__DIR__ . '/../includes/header.php'); ?>
 
 <div class="container" style="margin-top: 30px; margin-bottom: 50px;">
     <h2 class="section-title">📅 Lịch Chiếu Phim</h2>
@@ -274,4 +274,4 @@ div[style*="overflow-x: auto"]::-webkit-scrollbar-thumb:hover {
 }
 </style>
 
-<?php include('footer.php'); ?>
+<?php include(__DIR__ . '/../includes/footer.php'); ?>

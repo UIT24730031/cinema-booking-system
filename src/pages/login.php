@@ -1,4 +1,4 @@
-<?php include('header.php'); ?>
+<?php include(__DIR__ . '/../includes/header.php'); ?>
 
 <div class="container" style="padding: 50px 0;">
     <div class="row">
@@ -51,7 +51,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     formData.append('Email', email);
     formData.append('Password', password);
     
-    fetch('process_login.php', {
+    fetch('../process/process_login.php', {
         method: 'POST',
         body: formData
     })
@@ -90,4 +90,4 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
 });
 </script>
 
-<?php include('footer.php'); ?>
+<?php include(__DIR__ . '/../includes/footer.php'); ?>

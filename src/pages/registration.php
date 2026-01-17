@@ -1,4 +1,4 @@
-<?php include('header.php'); ?>
+<?php include(__DIR__ . '/../includes/header.php'); ?>
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3" style="margin-top: 30px;">
@@ -72,7 +72,7 @@ document.getElementById('registerForm').addEventListener('submit', function(e) {
     const formData = new FormData(this);
     
     // Send AJAX request
-    fetch('process_registration.php', {
+    fetch('../process/process_registration.php', {
         method: 'POST',
         body: formData
     })
@@ -117,4 +117,4 @@ document.getElementById('registerForm').addEventListener('submit', function(e) {
 });
 </script>
 
-<?php include('footer.php'); ?>
+<?php include(__DIR__ . '/../includes/footer.php'); ?>

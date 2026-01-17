@@ -1,4 +1,4 @@
-<?php include('header.php'); ?>
+<?php include('src/includes/header.php'); ?>
 
 <div class="hero-section">
     <div class="hero-content">
@@ -62,7 +62,7 @@
                                     <i class="fas fa-play"></i> TRAILER
                                 </a>
                             <?php } else { ?>
-                                <a href="movie_details.php?id=<?php echo $movie['movie_id'];?>" class="btn-get-ticket">CHI TIẾT</a>
+                                <a href="src/pages/movie_details.php?id=<?php echo $movie['movie_id'];?>" class="btn-get-ticket">CHI TIẾT</a>
                             <?php } ?>
                         </div>
                     </div>
@@ -110,4 +110,4 @@
     </div>
 </div>
 
-<?php include('footer.php'); ?>
+<?php include('src/includes/footer.php'); ?>

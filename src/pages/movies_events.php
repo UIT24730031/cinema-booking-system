@@ -1,5 +1,5 @@
 <!-- Trang phim đang chiếu -->
-<?php include('header.php'); ?>
+<?php include(__DIR__ . '/../includes/header.php'); ?>
 
 <div class="container" style="margin-top: 30px;">
     <h2 class="section-title">🎬 Phim Đang Chiếu</h2>
@@ -66,4 +66,4 @@
     </div>
 </div>
 
-<?php include('footer.php'); ?>
+<?php include(__DIR__ . '/../includes/footer.php'); ?>
