@@ -40,14 +40,21 @@ CREATE TABLE IF NOT EXISTS `tbl_bookings` (
   KEY `user_id` (`user_id`),
   KEY `screening_id` (`screening_id`),
   KEY `idx_screening_status` (`screening_id`, `status`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_bookings`
 --
 
 INSERT INTO `tbl_bookings` (`booking_id`, `user_id`, `screening_id`, `seats`, `total_amount`, `booking_date`, `status`) VALUES
-(1, 2, 9, 'G5,F5', 200000.00, '2025-12-05 08:19:38', 'confirmed');
+(1, 2, 9, 'G5,F5', 200000.00, '2026-01-17 08:19:38', 'confirmed'),
+(2, 3, 1, 'A5,A6', 160000.00, '2026-01-17 10:30:00', 'confirmed'),
+(3, 4, 2, 'B7,B8,B9', 300000.00, '2026-01-17 11:15:00', 'confirmed'),
+(4, 5, 3, 'C5', 120000.00, '2026-01-17 14:20:00', 'confirmed'),
+(5, 3, 4, 'D1,D2', 170000.00, '2026-01-17 09:45:00', 'confirmed'),
+(6, 6, 5, 'E5,E6,E7,E8', 420000.00, '2026-01-17 13:30:00', 'confirmed'),
+(7, 4, 6, 'F10,F11', 180000.00, '2026-01-17 10:00:00', 'cancelled'),
+(8, 2, 7, 'G3,G4', 220000.00, '2026-01-17 15:45:00', 'confirmed');
 
 -- --------------------------------------------------------
 
@@ -66,15 +73,31 @@ CREATE TABLE IF NOT EXISTS `tbl_seat_bookings` (
   UNIQUE KEY `unique_seat_per_screening` (`screening_id`, `seat_number`),
   KEY `booking_id` (`booking_id`),
   KEY `screening_id` (`screening_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Bảng lưu từng ghế đã đặt - ngăn chặn duplicate booking';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Bảng lưu từng ghế đã đặt - ngăn chặn duplicate booking';
 
 --
 -- Dumping data for table `tbl_seat_bookings`
 --
 
 INSERT INTO `tbl_seat_bookings` (`id`, `booking_id`, `screening_id`, `seat_number`, `created_at`) VALUES
-(1, 1, 9, 'G5', '2025-12-05 08:19:38'),
-(2, 1, 9, 'F5', '2025-12-05 08:19:38');
+(1, 1, 9, 'G5', '2026-01-17 08:19:38'),
+(2, 1, 9, 'F5', '2026-01-17 08:19:38'),
+(3, 2, 1, 'A5', '2026-01-17 10:30:00'),
+(4, 2, 1, 'A6', '2026-01-17 10:30:00'),
+(5, 3, 2, 'B7', '2026-01-17 11:15:00'),
+(6, 3, 2, 'B8', '2026-01-17 11:15:00'),
+(7, 3, 2, 'B9', '2026-01-17 11:15:00'),
+(8, 4, 3, 'C5', '2026-01-17 14:20:00'),
+(9, 5, 4, 'D1', '2026-01-17 09:45:00'),
+(10, 5, 4, 'D2', '2026-01-17 09:45:00'),
+(11, 6, 5, 'E5', '2026-01-17 13:30:00'),
+(12, 6, 5, 'E6', '2026-01-17 13:30:00'),
+(13, 6, 5, 'E7', '2026-01-17 13:30:00'),
+(14, 6, 5, 'E8', '2026-01-17 13:30:00'),
+(15, 7, 6, 'F10', '2026-01-17 10:00:00'),
+(16, 7, 6, 'F11', '2026-01-17 10:00:00'),
+(17, 8, 7, 'G3', '2026-01-17 15:45:00'),
+(18, 8, 7, 'G4', '2026-01-17 15:45:00');
 
 -- --------------------------------------------------------
 
@@ -93,15 +116,19 @@ CREATE TABLE IF NOT EXISTS `tbl_login` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_login`
 --
 
 INSERT INTO `tbl_login` (`id`, `user_id`, `username`, `password`, `user_type`, `created_at`) VALUES
-(1, 1, 'admin@cinema.com', 'admin123', 0, '2025-12-05 07:38:29'),
-(2, 2, 'aa@gmail.com', '1234567', 2, '2025-12-05 08:19:01');
+(1, 1, 'admin@cinema.com', 'admin123', 0, '2026-01-10 07:38:29'),
+(2, 2, 'aa@gmail.com', '1234567', 2, '2026-01-12 08:19:01'),
+(3, 3, 'john.doe@gmail.com', 'password123', 2, '2026-01-14 08:00:00'),
+(4, 4, 'jane.smith@gmail.com', 'password123', 2, '2026-01-15 09:30:00'),
+(5, 5, 'mike.wilson@gmail.com', 'password123', 2, '2026-01-16 10:15:00'),
+(6, 6, 'sarah.jones@gmail.com', 'password123', 2, '2026-01-17 11:45:00');
 
 -- --------------------------------------------------------
 
@@ -157,17 +184,21 @@ CREATE TABLE IF NOT EXISTS `tbl_news` (
   `description` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`news_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_news`
 --
 
 INSERT INTO `tbl_news` (`news_id`, `name`, `cast`, `news_date`, `attachment`, `description`, `created_at`) VALUES
-(1, 'Fast & Furious 10', 'Vin Diesel, Michelle Rodriguez, Jason Momoa', '2025-05-19', 'images/fast10.jpg', 'Phần phim mới nhất trong series Fast & Furious đình đám', '2025-12-05 07:38:29'),
-(2, 'Guardians of the Galaxy Vol. 3', 'Chris Pratt, Zoe Saldana', '2025-05-05', 'images/guardians3.jpg', 'Hành trình cuối cùng của đội vệ binh dải ngân hà', '2025-12-05 07:38:29'),
-(3, 'The Flash', 'Ezra Miller, Michael Keaton', '2025-06-16', 'images/flash.jpg', 'Barry Allen du hành thời gian để cứu gia đình và thay đổi quá khứ', '2025-12-05 07:38:29'),
-(4, 'Indiana Jones 5', 'Harrison Ford, Phoebe Waller-Bridge', '2025-06-30', 'images/indiana.jpg', 'Cuộc phiêu lưu cuối cùng của nhà khảo cổ học huyền thoại', '2025-12-05 07:38:29');
+(1, 'Khuyến mãi vé xem phim giá rẻ cuối tuần', NULL, '2026-01-25', 'images/promo1.jpg', 'Giảm giá 30% cho tất cả các suất chiếu vào thứ 7 và Chủ nhật', '2026-01-15 07:38:29'),
+(2, 'Combo bỏng nước giảm 50%', NULL, '2026-02-01', 'images/promo2.jpg', 'Mua combo bỏng nước size lớn chỉ với 50,000đ khi mua vé online', '2026-01-15 07:38:29'),
+(3, 'Fast & Furious 10 - Sắp ra mắt', 'Vin Diesel, Michelle Rodriguez, Jason Momoa', '2026-05-19', 'images/fast10.jpg', 'Phần phim mới nhất trong series Fast & Furious đình đám', '2026-01-15 07:38:29'),
+(4, 'Guardians of the Galaxy Vol. 3', 'Chris Pratt, Zoe Saldana', '2026-05-05', 'images/guardians3.jpg', 'Hành trình cuối cùng của đội vệ binh dải ngân hà', '2026-01-15 07:38:29'),
+(5, 'Thẻ thành viên VIP - Ưu đãi đặc biệt', NULL, '2026-02-14', 'images/vip.jpg', 'Đăng ký thẻ VIP để nhận voucher 200,000đ và tích điểm đổi quà', '2026-01-15 07:38:29'),
+(6, 'The Flash - Siêu phẩm DC sắp chiếu', 'Ezra Miller, Michael Keaton', '2026-06-16', 'images/flash.jpg', 'Barry Allen du hành thời gian để cứu gia đình và thay đổi quá khứ', '2026-01-15 07:38:29'),
+(7, 'Sinh nhật Cinema Star - Quà tặng hấp dẫn', NULL, '2026-02-20', 'images/birthday.jpg', 'Nhân dịp sinh nhật 5 năm - Vé chỉ từ 50,000đ cho sinh viên', '2026-01-15 07:38:29'),
+(8, 'Indiana Jones 5 - Huyền thoại trở lại', 'Harrison Ford, Phoebe Waller-Bridge', '2026-06-30', 'images/indiana.jpg', 'Cuộc phiêu lưu cuối cùng của nhà khảo cổ học huyền thoại', '2026-01-15 07:38:29');
 
 -- --------------------------------------------------------
 
@@ -186,15 +217,19 @@ CREATE TABLE IF NOT EXISTS `tbl_registration` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_registration`
 --
 
 INSERT INTO `tbl_registration` (`user_id`, `name`, `email`, `phone`, `age`, `gender`, `created_at`) VALUES
-(1, 'Admin', 'admin@cinema.com', '0123456789', 30, 'Male', '2025-12-05 07:38:29'),
-(2, 'aa', 'aa@gmail.com', '0123456789', 24, 'Male', '2025-12-05 08:19:01');
+(1, 'Admin', 'admin@cinema.com', '0123456789', 30, 'Male', '2026-01-10 07:38:29'),
+(2, 'Nguyen Van An', 'aa@gmail.com', '0123456789', 24, 'Male', '2026-01-12 08:19:01'),
+(3, 'Tran Thi Binh', 'john.doe@gmail.com', '0987654321', 28, 'Male', '2026-01-14 08:00:00'),
+(4, 'Le Hoang Minh', 'jane.smith@gmail.com', '0912345678', 32, 'Female', '2026-01-15 09:30:00'),
+(5, 'Pham Van Duc', 'mike.wilson@gmail.com', '0909876543', 26, 'Male', '2026-01-16 10:15:00'),
+(6, 'Vo Thi Mai', 'sarah.jones@gmail.com', '0898765432', 29, 'Female', '2026-01-17 11:45:00');
 
 -- --------------------------------------------------------
 
@@ -215,22 +250,38 @@ CREATE TABLE IF NOT EXISTS `tbl_screenings` (
   PRIMARY KEY (`screening_id`),
   KEY `movie_id` (`movie_id`),
   KEY `theatre_id` (`theatre_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_screenings`
 --
 
 INSERT INTO `tbl_screenings` (`screening_id`, `movie_id`, `theatre_id`, `screen_name`, `show_date`, `show_time`, `price`, `available_seats`) VALUES
-(1, 1, 1, 'Screen 1', '2025-12-06', '10:00:00', 80000.00, 150),
-(2, 1, 1, 'Screen 1', '2025-12-06', '14:30:00', 100000.00, 150),
-(3, 1, 1, 'Screen 2', '2025-12-06', '19:00:00', 120000.00, 150),
-(4, 2, 2, 'Screen 1', '2025-12-06', '11:00:00', 85000.00, 120),
-(5, 2, 2, 'Screen 2', '2025-12-06', '16:00:00', 105000.00, 120),
-(6, 3, 3, 'Screen 1', '2025-12-06', '13:00:00', 90000.00, 100),
-(7, 3, 3, 'Screen 1', '2025-12-06', '20:30:00', 110000.00, 100),
-(8, 4, 1, 'Screen 3', '2025-12-07', '15:00:00', 95000.00, 150),
-(9, 5, 2, 'Screen 3', '2025-12-07', '18:00:00', 100000.00, 118);
+(1, 1, 1, 'Screen 1', '2026-01-18', '10:00:00', 80000.00, 148),
+(2, 1, 1, 'Screen 1', '2026-01-19', '14:30:00', 100000.00, 147),
+(3, 1, 1, 'Screen 2', '2026-01-25', '19:00:00', 120000.00, 149),
+(4, 2, 2, 'Screen 1', '2026-01-20', '11:00:00', 85000.00, 118),
+(5, 2, 2, 'Screen 2', '2026-01-28', '16:00:00', 105000.00, 116),
+(6, 3, 3, 'Screen 1', '2026-01-22', '13:00:00', 90000.00, 98),
+(7, 3, 3, 'Screen 1', '2026-02-05', '20:30:00', 110000.00, 98),
+(8, 4, 1, 'Screen 3', '2026-02-08', '15:00:00', 95000.00, 150),
+(9, 5, 2, 'Screen 3', '2026-02-10', '18:00:00', 100000.00, 118),
+(10, 6, 1, 'Screen 2', '2026-02-12', '10:30:00', 80000.00, 150),
+(11, 6, 2, 'Screen 1', '2026-02-14', '14:00:00', 100000.00, 120),
+(12, 7, 3, 'Screen 2', '2026-02-15', '17:30:00', 115000.00, 100),
+(13, 7, 1, 'Screen 1', '2026-02-18', '21:00:00', 125000.00, 150),
+(14, 1, 2, 'Screen 2', '2026-02-20', '09:00:00', 75000.00, 120),
+(15, 2, 3, 'Screen 1', '2026-02-22', '12:30:00', 95000.00, 100),
+(16, 3, 1, 'Screen 3', '2026-02-25', '16:00:00', 105000.00, 150),
+(17, 4, 2, 'Screen 3', '2026-02-28', '19:30:00', 120000.00, 120),
+(18, 5, 3, 'Screen 2', '2026-03-05', '22:00:00', 130000.00, 100),
+(19, 8, 1, 'Screen 1', '2026-03-08', '10:00:00', 85000.00, 150),
+(20, 8, 2, 'Screen 1', '2026-03-12', '14:30:00', 105000.00, 120),
+(21, 8, 3, 'Screen 1', '2026-03-15', '19:00:00', 125000.00, 100),
+(22, 1, 1, 'Screen 2', '2026-03-18', '11:00:00', 85000.00, 150),
+(23, 2, 2, 'Screen 2', '2026-03-20', '15:30:00', 105000.00, 120),
+(24, 5, 1, 'Screen 3', '2026-03-22', '20:00:00', 120000.00, 150),
+(25, 7, 3, 'Screen 1', '2026-03-25', '13:00:00', 95000.00, 100);
 
 -- --------------------------------------------------------
 
