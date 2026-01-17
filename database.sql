@@ -191,14 +191,14 @@ CREATE TABLE IF NOT EXISTS `tbl_news` (
 --
 
 INSERT INTO `tbl_news` (`news_id`, `name`, `cast`, `news_date`, `attachment`, `description`, `created_at`) VALUES
-(1, 'Khuyến mãi vé xem phim giá rẻ cuối tuần', NULL, '2026-01-25', 'images/promo1.jpg', 'Giảm giá 30% cho tất cả các suất chiếu vào thứ 7 và Chủ nhật', '2026-01-15 07:38:29'),
-(2, 'Combo bỏng nước giảm 50%', NULL, '2026-02-01', 'images/promo2.jpg', 'Mua combo bỏng nước size lớn chỉ với 50,000đ khi mua vé online', '2026-01-15 07:38:29'),
-(3, 'Fast & Furious 10 - Sắp ra mắt', 'Vin Diesel, Michelle Rodriguez, Jason Momoa', '2026-05-19', 'images/fast10.jpg', 'Phần phim mới nhất trong series Fast & Furious đình đám', '2026-01-15 07:38:29'),
-(4, 'Guardians of the Galaxy Vol. 3', 'Chris Pratt, Zoe Saldana', '2026-05-05', 'images/guardians3.jpg', 'Hành trình cuối cùng của đội vệ binh dải ngân hà', '2026-01-15 07:38:29'),
-(5, 'Thẻ thành viên VIP - Ưu đãi đặc biệt', NULL, '2026-02-14', 'images/vip.jpg', 'Đăng ký thẻ VIP để nhận voucher 200,000đ và tích điểm đổi quà', '2026-01-15 07:38:29'),
-(6, 'The Flash - Siêu phẩm DC sắp chiếu', 'Ezra Miller, Michael Keaton', '2026-06-16', 'images/flash.jpg', 'Barry Allen du hành thời gian để cứu gia đình và thay đổi quá khứ', '2026-01-15 07:38:29'),
-(7, 'Sinh nhật Cinema Star - Quà tặng hấp dẫn', NULL, '2026-02-20', 'images/birthday.jpg', 'Nhân dịp sinh nhật 5 năm - Vé chỉ từ 50,000đ cho sinh viên', '2026-01-15 07:38:29'),
-(8, 'Indiana Jones 5 - Huyền thoại trở lại', 'Harrison Ford, Phoebe Waller-Bridge', '2026-06-30', 'images/indiana.jpg', 'Cuộc phiêu lưu cuối cùng của nhà khảo cổ học huyền thoại', '2026-01-15 07:38:29');
+(1, 'Khuyến mãi vé xem phim giá rẻ cuối tuần', NULL, '2026-01-25', 'https://media.istockphoto.com/id/1307973904/vector/cinema-ticket-template-of-black-realistic-movie-tickets-isolated-on-white-background-vecotr.jpg?s=612x612&w=0&k=20&c=-vdP62rb37Bp3fsKexCy8Irr02pLPx52A3CWXzXCwrQ=', 'Giảm giá 30% cho tất cả các suất chiếu vào thứ 7 và Chủ nhật', '2026-01-15 15:38:29'),
+(2, 'Combo bỏng nước giảm 50%', NULL, '2026-02-01', 'https://static.vecteezy.com/system/resources/thumbnails/072/449/383/small/movie-night-popcorn-tickets-cinema-vector.jpg', 'Mua combo bỏng nước size lớn chỉ với 50,000đ khi mua vé online', '2026-01-15 15:38:29'),
+(3, 'Fast & Furious 10 - Sắp ra mắt', 'Vin Diesel, Michelle Rodriguez, Jason Momoa', '2026-05-19', 'https://upload.wikimedia.org/wikipedia/vi/2/22/Fast_X_VN_poster.jpg', 'Phần phim mới nhất trong series Fast & Furious đình đám', '2026-01-15 15:38:29'),
+(4, 'Guardians of the Galaxy Vol. 3', 'Chris Pratt, Zoe Saldana', '2026-05-05', 'https://m.media-amazon.com/images/M/MV5BOTJhOTMxMmItZmE0Ny00MDc3LWEzOGEtOGFkMzY4MWYyZDQ0XkEyXkFqcGc@._V1_QL75_UX190_CR0,0,190,281_.jpg', 'Hành trình cuối cùng của đội vệ binh dải ngân hà', '2026-01-15 15:38:29'),
+(5, 'Thẻ thành viên VIP - Ưu đãi đặc biệt', NULL, '2026-02-14', 'https://static.vecteezy.com/system/resources/previews/062/141/897/non_2x/vip-cinema-ticket-vector.jpg', 'Đăng ký thẻ VIP để nhận voucher 200,000đ và tích điểm đổi quà', '2026-01-15 15:38:29'),
+(6, 'The Flash - Siêu phẩm DC sắp chiếu', 'Ezra Miller, Michael Keaton', '2026-06-16', 'https://m.media-amazon.com/images/M/MV5BYmE2NzBjNGUtNTJiMy00N2UxLWEyYzMtYzFjODFhMGZlOTgzXkEyXkFqcGc@._V1_.jpg', 'Barry Allen du hành thời gian để cứu gia đình và thay đổi quá khứ', '2026-01-15 15:38:29'),
+(7, 'Sinh nhật Cinema Star - Quà tặng hấp dẫn', NULL, '2026-02-20', 'https://thumbs.dreamstime.com/b/birthday-movie-themed-decor-popcorn-film-reels-marquee-sign-says-happy-red-white-striped-containers-fun-festive-party-359238156.jpg', 'Nhân dịp sinh nhật 5 năm - Vé chỉ từ 50,000đ cho sinh viên', '2026-01-15 15:38:29'),
+(8, 'Indiana Jones 5 - Huyền thoại trở lại', 'Harrison Ford, Phoebe Waller-Bridge', '2026-06-30', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu0gZGsEHvKXjI3EJpqE2MwSSVS2fooaPJlg&s', 'Cuộc phiêu lưu cuối cùng của nhà khảo cổ học huyền thoại', '2026-01-15 15:38:29');
 
 -- --------------------------------------------------------
 
