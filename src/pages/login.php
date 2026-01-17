@@ -1,6 +1,6 @@
 <?php include(__DIR__ . '/../includes/header.php'); ?>
 
-<div class="container" style="padding: 50px 0;">
+<div class="container" style="padding: 80px 0 50px 0;">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div style="background: #1f1f1f; padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.5);">

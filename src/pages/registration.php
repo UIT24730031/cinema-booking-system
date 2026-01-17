@@ -1,7 +1,7 @@
 <?php include(__DIR__ . '/../includes/header.php'); ?>
 
 <div class="row">
-    <div class="col-md-6 col-md-offset-3" style="margin-top: 30px;">
+    <div class="col-md-6 col-md-offset-3" style="margin-top: 80px;">
         <div class="panel panel-default" style="background: #1a1a1a; border: none;">
             <div class="panel-heading text-center" style="background: #2a2a2a; color: #e50914; border: none; font-size: 20px; font-weight: bold;">
                 ĐĂNG KÝ TÀI KHOẢN
