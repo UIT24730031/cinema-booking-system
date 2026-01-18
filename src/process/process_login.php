@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-include('config.php');
+include(__DIR__ . '/../../config.php');
 ob_end_clean();
 
 header('Content-Type: application/json');

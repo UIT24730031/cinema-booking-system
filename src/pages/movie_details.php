@@ -1,9 +1,9 @@
 <!-- Chi tiết phim và đặt vé -->
 <?php 
-include('header.php'); 
+include(__DIR__ . '/../includes/header.php'); 
 
 if(!isset($_GET['id'])) {
-    header('location: index.php');
+    header('location: /index.php');
     exit;
 }
 
@@ -147,4 +147,4 @@ $movie = mysqli_fetch_array($movie_qry);
     </div>
 </div>
 
-<?php include('footer.php'); ?>
+<?php include(__DIR__ . '/../includes/footer.php'); ?>
