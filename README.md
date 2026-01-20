@@ -94,7 +94,7 @@ $database = "cinema_booking";
 
 ### 4️⃣ Chạy
 - User: `http://localhost/cinema-booking-system/`
-- Admin: `http://localhost/cinema-booking-system/admin/`
+- Admin: `http://localhost/cinema-booking-system/src/pages/admin/`
 
 **Tài khoản admin:**
 - Email: `admin@cinema.com`
