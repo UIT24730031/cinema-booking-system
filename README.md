@@ -53,56 +53,16 @@ Hệ thống đặt vé xem phim trực tuyến được xây dựng bằng PHP 
 
 ---
 
-## 👶 New to GitHub & PHP? Read This First
-Nếu bạn là người mới, lưu ý các điểm sau:
+## 👶Nếu bạn là người mới, lưu ý các điểm sau:
 - Không thể chạy file `.php` bằng cách double-click
 - Bắt buộc phải dùng local web server **XAMPP hoặc MAMP**
 - Source code phải nằm trong thư mục `htdocs`
 - Cần import database trước khi mở website
 
-➡️ Hãy làm theo từng bước ở phần **🚀 Quick Start (5 phút)** bên dưới
+➡️ Hãy làm theo từng bước ở phần **🚀 Hướng dẫn cài đặt chi tiết** bên dưới
 
----
 
-## 🚀 Quick Start (5 phút)
-
-### 1️⃣ Clone project
-```bash
-git clone <your-repo-url>
-cd cinema-booking-system
-```
-
-### 2️⃣ Import database
-- Mở phpMyAdmin: `http://localhost/phpmyadmin`
-- Tạo database: `cinema_booking`
-- Import file: **`database.sql`**
-- ✅ Xong! Database đã có đầy đủ tính năng concurrent booking
-
-### 3️⃣ Cấu hình
-Copy và sửa file config:
-```bash
-cp config.example.php config.php
-```
-
-Sửa trong `config.php`:
-```php
-$host = "localhost";
-$user = "root";
-$password = "";  // Mật khẩu MySQL của bạn
-$database = "cinema_booking";
-```
-
-### 4️⃣ Chạy
-- User: `http://localhost/cinema-booking-system/`
-- Admin: `http://localhost/cinema-booking-system/src/pages/admin/`
-
-**Tài khoản admin:**
-- Email: `admin@cinema.com`
-- Password: `admin123`
-
----
-
-## Hướng dẫn cài đặt chi tiết
+## 🚀Hướng dẫn cài đặt chi tiết
 
 ### Yêu cầu hệ thống
 
@@ -115,8 +75,8 @@ $database = "cinema_booking";
 **1. Clone repository**
 
 ```bash
-git clone https://github.com/your-username/cinema-booking.git
-cd cinema-booking
+git clone https://github.com/UIT24730031/cinema-booking-system.git
+cd cinema-booking-system
 ```
 
 **2. Import cơ sở dữ liệu**
@@ -128,6 +88,10 @@ cd cinema-booking
 **3. Cấu hình kết nối database**
 
 * Sao chép file `config.example.php` thành `config.php`
+```bash
+cp config.example.php config.php
+```
+
 * Chỉnh sửa thông tin:
 
 ```php
@@ -139,8 +103,8 @@ $database = "cinema_booking";
 
 **4. Khởi chạy hệ thống**
 
-* Giao diện người dùng: `http://localhost/cinema`
-* Trang quản trị: `http://localhost/cinema/admin`
+* Giao diện người dùng: `http://localhost/cinema-booking-system/`
+* Trang quản trị: `http://localhost/cinema-booking-system/admin/`
 
 ---
 
