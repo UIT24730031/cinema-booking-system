@@ -1,5 +1,6 @@
 <?php 
-include(__DIR__ . '/../includes/header.php');
+include('header.php'); 
+
 if(!isset($_SESSION['user'])) {
     echo "<script>alert('Vui lòng đăng nhập!'); window.location='login.php';</script>";
     exit;
@@ -100,7 +101,7 @@ $user_id = $_SESSION['user'];
                     <i class="fas fa-ticket-alt" style="font-size: 80px; color: #333; margin-bottom: 20px;"></i>
                     <h3 style="color: #aaa; margin-bottom: 15px;">Chưa có vé nào</h3>
                     <p style="color: #777; margin-bottom: 25px;">Hãy đặt vé xem phim yêu thích của bạn ngay!</p>
-                    <a href="/index.php" class="btn btn-danger" style="background: #e50914; padding: 12px 30px;">
+                    <a href="index.php" class="btn btn-danger" style="background: #e50914; padding: 12px 30px;">
                         <i class="fas fa-search"></i> Khám phá phim
                     </a>
                 </div>
@@ -109,4 +110,4 @@ $user_id = $_SESSION['user'];
     </div>
 </div>
 
-<?php include(__DIR__ . '/../includes/footer.php'); ?>
+<?php include('footer.php'); ?>

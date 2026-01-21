@@ -1,6 +1,6 @@
 <?php
 ob_start();
-include(__DIR__ . '/../../config.php');
+include('config.php');
 ob_end_clean();
 
 header('Content-Type: application/json');

@@ -5,7 +5,7 @@ ob_start();
 if(session_status() == PHP_SESSION_NONE){
     session_start();
 }
-include(__DIR__ . '/../../config.php');
+include('config.php');
 
 // Clear any accidental output from config
 ob_end_clean();
@@ -27,10 +27,8 @@ error_reporting(0);
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     
-    <link rel="stylesheet" href="<?php echo dirname($_SERVER['PHP_SELF'], 2); ?>/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -42,17 +40,13 @@ error_reporting(0);
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="/index.php"><i class="fas fa-film"></i> CINEMA STAR</a>
+      <a class="navbar-brand" href="index.php"><i class="fas fa-film"></i> CINEMA STAR</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <?php
-      // Get current page name
-      $current_page = basename($_SERVER['PHP_SELF']);
-      ?>
       <ul class="nav navbar-nav">
-        <li class="<?php echo ($current_page == 'index.php') ? 'active' : ''; ?>"><a href="/index.php">Trang Chủ</a></li>
-        <li class="<?php echo ($current_page == 'movies_events.php') ? 'active' : ''; ?>"><a href="/src/pages/movies_events.php">Phim Đang Chiếu</a></li>
-        <li class="<?php echo ($current_page == 'schedule.php') ? 'active' : ''; ?>"><a href="/src/pages/schedule.php">Lịch Chiếu</a></li>
+        <li class="active"><a href="index.php">Trang Chủ</a></li>
+        <li><a href="movies_events.php">Phim Đang Chiếu</a></li>
+        <li><a href="schedule.php">Lịch Chiếu</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <?php if(isset($_SESSION['user'])){ ?>
@@ -61,13 +55,13 @@ error_reporting(0);
                     <i class="fas fa-user-circle"></i> <?php echo $_SESSION['user_name']; ?> <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="/src/pages/profile.php">Hồ sơ cá nhân</a></li>
-                    <li><a href="/src/pages/logout.php">Đăng xuất</a></li>
+                    <li><a href="profile.php">Hồ sơ cá nhân</a></li>
+                    <li><a href="logout.php">Đăng xuất</a></li>
                 </ul>
             </li>
         <?php } else { ?>
-            <li><a href="/src/pages/registration.php"><span class="glyphicon glyphicon-user"></span> Đăng Ký</a></li>
-            <li><a href="/src/pages/login.php"><span class="glyphicon glyphicon-log-in"></span> Đăng Nhập</a></li>
+            <li><a href="registration.php"><span class="glyphicon glyphicon-user"></span> Đăng Ký</a></li>
+            <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Đăng Nhập</a></li>
         <?php } ?>
       </ul>
     </div>

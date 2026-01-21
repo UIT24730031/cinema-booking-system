@@ -1,5 +1,6 @@
 <?php 
-include(__DIR__ . '/../includes/header.php');
+include('header.php'); 
+
 if(!isset($_SESSION['user'])) {
     echo "<script>alert('Vui lòng đăng nhập!'); window.location='login.php';</script>";
     exit;
@@ -184,4 +185,4 @@ $total_spent = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(total_amount) a
     </div>
 </div>
 
-<?php include(__DIR__ . '/../includes/footer.php'); ?>
+<?php include('footer.php'); ?>
