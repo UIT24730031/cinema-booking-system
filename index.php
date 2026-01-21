@@ -1,4 +1,4 @@
-<?php include('src/includes/header.php'); ?>
+<?php include('header.php'); ?>
 
 <div class="hero-section">
     <div class="hero-content">
@@ -62,7 +62,7 @@
                                     <i class="fas fa-play"></i> TRAILER
                                 </a>
                             <?php } else { ?>
-                                <a href="src/pages/movie_details.php?id=<?php echo $movie['movie_id'];?>" class="btn-get-ticket">CHI TIẾT</a>
+                                <a href="movie_details.php?id=<?php echo $movie['movie_id'];?>" class="btn-get-ticket">CHI TIẾT</a>
                             <?php } ?>
                         </div>
                     </div>
@@ -83,16 +83,16 @@
 
     <!-- Tin tức/Khuyến mãi -->
     <h3 class="section-title" style="margin-top: 60px;">📰 Tin Tức & Khuyến Mãi</h3>
-    <div class="owl-carousel owl-theme news-slider">
+    <div class="row">
         <?php
-        $news_qry = mysqli_query($con, "SELECT * FROM tbl_news ORDER BY news_date DESC");
+        $news_qry = mysqli_query($con, "SELECT * FROM tbl_news ORDER BY news_date DESC LIMIT 4");
         if(mysqli_num_rows($news_qry) > 0) {
             while($news = mysqli_fetch_array($news_qry)) {
         ?>
-            <div class="item">
+            <div class="col-md-3 col-sm-6">
                 <div class="movie-card">
                     <div class="movie-img-wrap" style="height: 250px;">
-                        <img src="<?php echo $news['attachment'];?>" alt="<?php echo htmlspecialchars($news['name']);?>" onerror="this.src='https://via.placeholder.com/400x250?text=News';">
+                        <img src="admin/<?php echo $news['attachment'];?>" alt="<?php echo htmlspecialchars($news['name']);?>" onerror="this.src='https://via.placeholder.com/400x250?text=News';">
                         <div class="movie-overlay">
                             <a href="#" class="btn-get-ticket">XEM THÊM</a>
                         </div>
@@ -105,40 +105,9 @@
             </div>
         <?php 
             }
-        } else {
-            echo '<div class="item"><p class="text-center" style="color:#999;">Hiện chưa có tin tức nào.</p></div>';
         }
         ?>
     </div>
-    
-    <script>
-    $(document).ready(function(){
-        $('.news-slider').owlCarousel({
-            loop: true,
-            margin: 20,
-            nav: true,
-            dots: true,
-            autoplay: true,
-            autoplayTimeout: 3000,
-            autoplayHoverPause: true,
-            navText: ['<i class="fas fa-chevron-left"></i>', '<i class="fas fa-chevron-right"></i>'],
-            responsive: {
-                0: {
-                    items: 1
-                },
-                576: {
-                    items: 2
-                },
-                768: {
-                    items: 3
-                },
-                992: {
-                    items: 4
-                }
-            }
-        });
-    });
-    </script>
 </div>
 
-<?php include('src/includes/footer.php'); ?>
+<?php include('footer.php'); ?>

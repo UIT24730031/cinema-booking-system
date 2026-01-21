@@ -1,12 +1,13 @@
 <?php 
-include(__DIR__ . '/../includes/header.php');
+include('header.php'); 
+
 if(!isset($_SESSION['user'])) {
     echo "<script>alert('Vui lòng đăng nhập để đặt vé!'); window.location='login.php';</script>";
     exit;
 }
 
 if(!isset($_GET['screening_id'])) {
-    header('location: /index.php');
+    header('location: index.php');
     exit;
 }
 
@@ -200,7 +201,7 @@ function updateBookingInfo() {
 
 // Check seat availability before submitting
 function checkSeatAvailability() {
-    return fetch('../process/check_seat_availability.php?screening_id=<?php echo $screening_id;?>')
+    return fetch('check_seat_availability.php?screening_id=<?php echo $screening_id;?>')
         .then(response => {
             if(!response.ok) {
                 throw new Error('HTTP error! status: ' + response.status);
@@ -268,7 +269,7 @@ document.getElementById('btn-confirm').addEventListener('click', function() {
                 formData.append('seats', selectedSeats.join(','));
                 formData.append('total_amount', selectedSeats.length * seatPrice);
                 
-                fetch('../process/process_booking.php', {
+                fetch('process_booking.php', {
                     method: 'POST',
                     body: formData
                 })
@@ -320,4 +321,4 @@ document.getElementById('btn-confirm').addEventListener('click', function() {
 });
 </script>
 
-<?php include(__DIR__ . '/../includes/footer.php'); ?>
+<?php include('footer.php'); ?>
