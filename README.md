@@ -118,6 +118,7 @@ Password: `admin123`
 
 ## Cấu trúc thư mục
 
+```text
 cinema-booking-system/
 ├── admin/                    # Giao diện & chức năng quản trị
 ├── css/                      # File CSS
@@ -152,6 +153,7 @@ cinema-booking-system/
 ├── process_registration.php     # Xử lý đăng ký
 └── process_booking.php          # Xử lý đặt vé
 
+```
 ---
 
 ## Tính năng nổi bật
