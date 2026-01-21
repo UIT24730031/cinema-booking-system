@@ -118,18 +118,39 @@ Password: `admin123`
 
 ## Cấu trúc thư mục
 
-```
-cinema/
-├── admin/           # Giao diện & chức năng quản trị
-├── css/
-├── images/
-├── config.php       # File cấu hình kết nối database
-├── index.php        # Trang chủ
-├── schedule.php     # Lịch chiếu
-├── booking.php      # Đặt vé
-└── database.sql     # Cấu trúc và dữ liệu mẫu của hệ thống
-
-```
+cinema-booking-system/
+├── admin/                    # Giao diện & chức năng quản trị
+├── css/                      # File CSS
+├── images/                   # Hình ảnh (poster, banner, etc.)
+│
+├── .gitignore
+├── .htaccess
+├── README.md
+│
+├── config.example.php        # File cấu hình mẫu (copy thành config.php)
+├── database.sql              # Cấu trúc database & dữ liệu mẫu
+│
+├── header.php                # Header dùng chung
+├── footer.php                # Footer dùng chung
+│
+├── index.php                 # Trang chủ
+├── login.php                 # Đăng nhập
+├── logout.php                # Đăng xuất
+├── registration.php          # Đăng ký
+├── profile.php               # Trang thông tin người dùng
+│
+├── schedule.php              # Lịch chiếu phim
+├── booking.php               # Đặt vé
+├── booking_history.php       # Lịch sử đặt vé
+├── cancel_booking.php        # Hủy vé
+│
+├── movie_details.php         # Chi tiết phim
+├── movies_events.php         # Danh sách phim / sự kiện
+│
+├── check_seat_availability.php  # Kiểm tra ghế trống (AJAX)
+├── process_login.php            # Xử lý đăng nhập
+├── process_registration.php     # Xử lý đăng ký
+└── process_booking.php          # Xử lý đặt vé
 
 ---
 
